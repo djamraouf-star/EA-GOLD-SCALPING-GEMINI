@@ -7,65 +7,65 @@
 
 // --- PARAMÈTRES D'ENTRÉE DU ROBOT ---
 input group "=== 1. PARAMÈTRES GÉNÉRAUX ==="
-input ulong          InpMagicNumber          = 888101;         // Magic Number unique
-input double         InpLotSize              = 0.01;          // Lot Fixe (Si RiskAuto = false)
-input bool           InpUseAutoRisk          = true;       // Calcul Automatique de Lot par Risk %
-input double         InpRiskPercent          = 1;          // % du Solde risqué par Trade
-input int            InpMaxSlippagePoints    = 20;          // Slippage Max toléré (points)
+input ulong          InpMagicNumber          = 888101;         // [InpMagicNumber] Magic Number unique
+input double         InpLotSize              = 0.01;          // [InpLotSize] Lot Fixe (Si RiskAuto = false)
+input bool           InpUseAutoRisk          = true;       // [InpUseAutoRisk] Calcul Automatique de Lot par Risk %
+input double         InpRiskPercent          = 1;          // [InpRiskPercent] % du Solde risqué par Trade
+input int            InpMaxSlippagePoints    = 20;          // [InpMaxSlippagePoints] Slippage Max toléré (points)
 
 input group "=== 2. INDICE DE QUALITÉ DU MARCHÉ (IQM) ==="
-input double         InpMinMarketScore       = 55;        // Score IQM Minimum pour Trader (0 - 100)
-input double         InpMaxSpreadPoints      = 60;        // Spread Max Autorisé (points)
-input double         InpMinAtrSpreadRatio    = 2.5;       // Ratio Min ATR / Spread (0.0 = Désactivé)
+input double         InpMinMarketScore       = 55;        // [InpMinMarketScore] Score IQM Minimum pour Trader (0 - 100)
+input double         InpMaxSpreadPoints      = 60;        // [InpMaxSpreadPoints] Spread Max Autorisé (points)
+input double         InpMinAtrSpreadRatio    = 2.5;       // [InpMinAtrSpreadRatio] Ratio Min ATR / Spread (0.0 = Désactivé)
 
 input group "=== 3. ARMEE ET ADAPTATION DU STOP LOSS (SL/TP) ==="
-input double         InpSlAtrMultiplier      = 1.2;        // Coefficient SL ATR Initial (Ex: 1.30)
-input bool           InpEnableDynamicIqmSl   = true; // Adaptation SL selon IQM
-input double         InpMinSlPoints          = 40;            // Borne Minimum du Stop Loss (points)
-input double         InpMaxSlPoints          = 250;            // Borne Maximum Cap du Stop Loss (points)
-input double         InpTp1AtrMultiplier     = 2.2;        // Multiplicateur TP1 (ATR)
+input double         InpSlAtrMultiplier      = 1.2;        // [InpSlAtrMultiplier] Coefficient SL ATR Initial (Ex: 1.30)
+input bool           InpEnableDynamicIqmSl   = true; // [InpEnableDynamicIqmSl] Adaptation SL selon IQM
+input double         InpMinSlPoints          = 40;            // [InpMinSlPoints] Borne Minimum du Stop Loss (points)
+input double         InpMaxSlPoints          = 250;            // [InpMaxSlPoints] Borne Maximum Cap du Stop Loss (points)
+input double         InpTp1AtrMultiplier     = 1.9;        // [InpTp1AtrMultiplier] Multiplicateur TP1 (ATR)
 
 input group "=== 4. GESTION DYNAMIQUE DE POSITION ==="
-input bool           InpEnablePartialClose   = true;       // Clôture Partielle à TP1
-input double         InpPartialClosePercent  = 50;       // % à clôturer à TP1
-input bool           InpEnableBreakEven      = true;       // Passage au Break Even
-input double         InpBreakEvenAtrTrigger  = 0.7;       // Déclencheur BE (Multiplicateur ATR)
-input double         InpBreakEvenLockPoints  = 10;        // Points de profit garantis au BE
-input bool           InpEnableTrailingStop   = true;       // Trailing Stop ATR
-input double         InpTrailingStartAtr     = 1.1;       // Trailing Start (ATR)
-input double         InpTrailingStepAtr      = 0.3;        // Trailing Step (ATR)
+input bool           InpEnablePartialClose   = true;       // [InpEnablePartialClose] Clôture Partielle à TP1
+input double         InpPartialClosePercent  = 75;       // [InpPartialClosePercent] % à clôturer à TP1
+input bool           InpEnableBreakEven      = true;       // [InpEnableBreakEven] Passage au Break Even
+input double         InpBreakEvenAtrTrigger  = 0.7;       // [InpBreakEvenAtrTrigger] Déclencheur BE (Multiplicateur ATR)
+input double         InpBreakEvenLockPoints  = 30;        // [InpBreakEvenLockPoints] Points de profit garantis au BE
+input bool           InpEnableTrailingStop   = true;       // [InpEnableTrailingStop] Trailing Stop ATR
+input double         InpTrailingStartAtr     = 1.1;       // [InpTrailingStartAtr] Trailing Start (ATR)
+input double         InpTrailingStepAtr      = 0.3;        // [InpTrailingStepAtr] Trailing Step (ATR)
 
 input group "=== 5. INDICATEURS ET POIDS STRATÉGIQUES ==="
-input int            InpAtrPeriod            = 14;          // Période ATR
-input double         InpMinAtrPoints         = 5;       // Volatilité Minimum (Points)
-input int            InpEmaFastPeriod        = 9;          // Période EMA Rapide
-input int            InpEmaSlowPeriod        = 21;          // Période EMA Lente
-input int            InpRsiPeriod            = 14;          // Période RSI
-input double         InpRsiBuyThreshold      = 50;    // Seuil RSI Achat
-input double         InpRsiSellThreshold     = 50;   // Seuil RSI Vente
-input double         InpWeightSpread         = 33;       // Poids du Spread dans l'IQM
-input double         InpWeightAtr            = 22;          // Poids de la Volatilité (ATR)
-input double         InpWeightTrend          = 11;        // Poids de la Tendance dans l'IQM
-input double         InpWeightRsi            = 16;          // Poids du RSI Momentum dans l'IQM
-input double         InpWeightSession        = 11;       // Poids de la Session
-input double         InpWeightCandles        = 2;        // Poids des Bougies
-input double         InpWeightPullback       = 5;       // Poids du Pullback
+input int            InpAtrPeriod            = 14;          // [InpAtrPeriod] Période ATR
+input double         InpMinAtrPoints         = 5;       // [InpMinAtrPoints] Volatilité Minimum (Points)
+input int            InpEmaFastPeriod        = 9;          // [InpEmaFastPeriod] Période EMA Rapide
+input int            InpEmaSlowPeriod        = 21;          // [InpEmaSlowPeriod] Période EMA Lente
+input int            InpRsiPeriod            = 14;          // [InpRsiPeriod] Période RSI
+input double         InpRsiBuyThreshold      = 50;    // [InpRsiBuyThreshold] Seuil RSI Achat
+input double         InpRsiSellThreshold     = 50;   // [InpRsiSellThreshold] Seuil RSI Vente
+input double         InpWeightSpread         = 33;       // [InpWeightSpread] Poids du Spread dans l'IQM
+input double         InpWeightAtr            = 22;          // [InpWeightAtr] Poids de la Volatilité (ATR)
+input double         InpWeightTrend          = 11;        // [InpWeightTrend] Poids de la Tendance dans l'IQM
+input double         InpWeightRsi            = 16;          // [InpWeightRsi] Poids du RSI Momentum dans l'IQM
+input double         InpWeightSession        = 11;       // [InpWeightSession] Poids de la Session
+input double         InpWeightCandles        = 2;        // [InpWeightCandles] Poids des Bougies
+input double         InpWeightPullback       = 5;       // [InpWeightPullback] Poids du Pullback
 
 input group "=== 6. LIMITES D'EXPOSITION JOURNALIÈRE ==="
-input bool           InpEnableDailyLimits    = true;       // Activer les Limites Journalières
-input double         InpMaxDailyLossAmount   = 150;       // Perte Max Journalière ($)
-input double         InpMaxDailyProfitAmount = 400;     // Objectif Profit Journalier ($)
-input int            InpMaxDailyTrades       = 12;          // Nombre Max de Trades / Jour
-input int            InpPauseAfterLosses     = 2; // Nb Pertes avant Pause
-input int            InpPauseDurationMin     = 30;    // Durée de la Pause (Min)
+input bool           InpEnableDailyLimits    = true;       // [InpEnableDailyLimits] Activer les Limites Journalières
+input double         InpMaxDailyLossAmount   = 150;       // [InpMaxDailyLossAmount] Perte Max Journalière ($)
+input double         InpMaxDailyProfitAmount = 400;     // [InpMaxDailyProfitAmount] Objectif Profit Journalier ($)
+input int            InpMaxDailyTrades       = 20;          // [InpMaxDailyTrades] Nombre Max de Trades / Jour
+input int            InpPauseAfterLosses     = 2; // [InpPauseAfterLosses] Nb Pertes avant Pause
+input int            InpPauseDurationMin     = 30;    // [InpPauseDurationMin] Durée de la Pause (Min)
 
 input group "=== 7. FILTRES HORAIRES ET SESSIONS ==="
-input bool           InpEnableSessionFilter  = false;     // Activer les Filtres de Session
-input string         InpLondonStart          = "08:00";       // Début Session Londres
-input string         InpLondonEnd            = "17:30";         // Fin Session Londres
-input string         InpNyStart              = "14:30";           // Début Session NY
-input string         InpNyEnd                = "21:00";             // Fin Session NY
-input bool           InpFilterAsianSession   = false;      // Interdire Session Asiatique
+input bool           InpEnableSessionFilter  = false;     // [InpEnableSessionFilter] Activer les Filtres de Session
+input string         InpLondonStart          = "08:00";       // [InpLondonStart] Début Session Londres
+input string         InpLondonEnd            = "17:30";         // [InpLondonEnd] Fin Session Londres
+input string         InpNyStart              = "14:30";           // [InpNyStart] Début Session NY
+input string         InpNyEnd                = "21:00";             // [InpNyEnd] Fin Session NY
+input bool           InpFilterAsianSession   = false;      // [InpFilterAsianSession] Interdire Session Asiatique
 
 class CParameters
 {
