@@ -15,29 +15,29 @@ sinput int           InpMaxSlippagePoints    = 20;          // [InpMaxSlippagePo
 
 input group "=== 2. INDICE DE QUALITÉ DU MARCHÉ (IQM) ==="
 input double         InpMinMarketScore       = 71.5;        // [InpMinMarketScore] Score IQM Minimum pour Trader (0 - 100)
-input double         InpMaxSpreadPoints      = 60;        // [InpMaxSpreadPoints] Spread Max Autorisé (points)
-input double         InpMinAtrSpreadRatio    = 2.5;       // [InpMinAtrSpreadRatio] Ratio Min ATR / Spread (0.0 = Désactivé)
+sinput double        InpMaxSpreadPoints      = 60;        // [InpMaxSpreadPoints] Spread Max Autorisé (points)
+sinput double        InpMinAtrSpreadRatio    = 2.5;       // [InpMinAtrSpreadRatio] Ratio Min ATR / Spread (0.0 = Désactivé)
 
 input group "=== 3. ARMEE ET ADAPTATION DU STOP LOSS (SL/TP) ==="
 input double         InpSlAtrMultiplier      = 1.2;        // [InpSlAtrMultiplier] Coefficient SL ATR Initial (Ex: 1.30)
-input bool           InpEnableDynamicIqmSl   = true; // [InpEnableDynamicIqmSl] Adaptation SL selon IQM
-input double         InpMinSlPoints          = 40;            // [InpMinSlPoints] Borne Minimum du Stop Loss (points)
-input double         InpMaxSlPoints          = 250;            // [InpMaxSlPoints] Borne Maximum Cap du Stop Loss (points)
+sinput bool          InpEnableDynamicIqmSl   = true; // [InpEnableDynamicIqmSl] Adaptation SL selon IQM
+sinput double        InpMinSlPoints          = 40;            // [InpMinSlPoints] Borne Minimum du Stop Loss (points)
+sinput double        InpMaxSlPoints          = 250;            // [InpMaxSlPoints] Borne Maximum Cap du Stop Loss (points)
 input double         InpTp1AtrMultiplier     = 2.15;        // [InpTp1AtrMultiplier] Multiplicateur TP1 (ATR)
 
 input group "=== 4. GESTION DYNAMIQUE DE POSITION ==="
-input bool           InpEnablePartialClose   = true;       // [InpEnablePartialClose] Clôture Partielle à TP1
+sinput bool          InpEnablePartialClose   = true;       // [InpEnablePartialClose] Clôture Partielle à TP1
 input double         InpPartialClosePercent  = 75;       // [InpPartialClosePercent] % à clôturer à TP1
-input bool           InpEnableBreakEven      = true;       // [InpEnableBreakEven] Passage au Break Even
+sinput bool          InpEnableBreakEven      = true;       // [InpEnableBreakEven] Passage au Break Even
 input double         InpBreakEvenAtrTrigger  = 0.7;       // [InpBreakEvenAtrTrigger] Déclencheur BE (Multiplicateur ATR)
-input double         InpBreakEvenLockPoints  = 30;        // [InpBreakEvenLockPoints] Points de profit garantis au BE
-input bool           InpEnableTrailingStop   = true;       // [InpEnableTrailingStop] Trailing Stop ATR
+sinput double        InpBreakEvenLockPoints  = 30;        // [InpBreakEvenLockPoints] Points de profit garantis au BE
+sinput bool          InpEnableTrailingStop   = true;       // [InpEnableTrailingStop] Trailing Stop ATR
 input double         InpTrailingStartAtr     = 1.1;       // [InpTrailingStartAtr] Trailing Start (ATR)
 input double         InpTrailingStepAtr      = 0.3;        // [InpTrailingStepAtr] Trailing Step (ATR)
 
 input group "=== 5. INDICATEURS ET POIDS STRATÉGIQUES ==="
 sinput int           InpAtrPeriod            = 14;          // [InpAtrPeriod] Période ATR
-input double         InpMinAtrPoints         = 5;       // [InpMinAtrPoints] Volatilité Minimum (Points)
+sinput double        InpMinAtrPoints         = 5;       // [InpMinAtrPoints] Volatilité Minimum (Points)
 sinput int           InpEmaFastPeriod        = 9;          // [InpEmaFastPeriod] Période EMA Rapide
 sinput int           InpEmaSlowPeriod        = 21;          // [InpEmaSlowPeriod] Période EMA Lente
 sinput int           InpRsiPeriod            = 14;          // [InpRsiPeriod] Période RSI
@@ -45,12 +45,12 @@ input double         InpRsiBuyThreshold      = 50;    // [InpRsiBuyThreshold] Se
 input double         InpRsiSellThreshold     = 50;   // [InpRsiSellThreshold] Seuil RSI Vente
 
 input group "=== FILTRE ADX (FORCE DE TENDANCE) ==="
-input bool           InpEnableAdxFilter      = true;        // [InpEnableAdxFilter] Activer le filtre ADX
+sinput bool          InpEnableAdxFilter      = true;        // [InpEnableAdxFilter] Activer le filtre ADX
 sinput int           InpAdxPeriod            = 14;          // [InpAdxPeriod] Période de l'ADX
 input double         InpAdxThreshold         = 22;          // [InpAdxThreshold] Seuil minimum de l'ADX (ex: 22)
 
 input group "=== 6. LIMITES D'EXPOSITION JOURNALIÈRE ==="
-input bool           InpEnableDailyLimits    = true;       // [InpEnableDailyLimits] Activer les Limites Journalières
+sinput bool          InpEnableDailyLimits    = true;       // [InpEnableDailyLimits] Activer les Limites Journalières
 sinput double        InpMaxDailyLossAmount   = 150;       // [InpMaxDailyLossAmount] Perte Max Journalière ($)
 sinput double        InpMaxDailyProfitAmount = 400;     // [InpMaxDailyProfitAmount] Objectif Profit Journalier ($)
 sinput int           InpMaxDailyTrades       = 20;          // [InpMaxDailyTrades] Nombre Max de Trades / Jour
@@ -58,15 +58,15 @@ sinput int           InpPauseAfterLosses     = 3; // [InpPauseAfterLosses] Nb Pe
 sinput int           InpPauseDurationMin     = 30;    // [InpPauseDurationMin] Durée de la Pause (Min)
 
 input group "=== 7. FILTRES HORAIRES ET SESSIONS ==="
-input bool           InpEnableSessionFilter  = false;     // [InpEnableSessionFilter] Activer les Filtres de Session
+sinput bool          InpEnableSessionFilter  = false;     // [InpEnableSessionFilter] Activer les Filtres de Session
 sinput string        InpLondonStart          = "08:00";       // [InpLondonStart] Début Session Londres
 sinput string        InpLondonEnd            = "17:30";         // [InpLondonEnd] Fin Session Londres
 sinput string        InpNyStart              = "14:30";           // [InpNyStart] Début Session NY
 sinput string        InpNyEnd                = "21:00";             // [InpNyEnd] Fin Session NY
-input bool           InpFilterAsianSession   = true;      // [InpFilterAsianSession] Interdire Session Asiatique
+sinput bool          InpFilterAsianSession   = true;      // [InpFilterAsianSession] Interdire Session Asiatique
 
 input group "=== 8. STATISTICAL EDGE ==="
-input bool           InpEnableStatisticalEdge = true;     // [InpEnableStatisticalEdge] Utiliser Stat Edge
+sinput bool          InpEnableStatisticalEdge = true;     // [InpEnableStatisticalEdge] Utiliser Stat Edge
 input double         InpStatEdgeMinWinRate    = 55.0;     // [InpStatEdgeMinWinRate] Edge Minimum (%)
 sinput int           InpStatEdgeLookback      = 10000;    // [InpStatEdgeLookback] Bougies à analyser
 
