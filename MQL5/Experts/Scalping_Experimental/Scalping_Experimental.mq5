@@ -8,7 +8,10 @@
 
 #include "../../Include/Configuration/Parametres_Exposes.mqh"
 #include "../../Include/Automate/CContexteTrading.mqh"
-#include "../../Include/Automate/CEtatRepos.mqh"
+#include "../../Include/Automate/Etats.mqh"
+#include "../../Include/Moteurs/CAgregateurLogs.mqh"
+#include "../../Include/Moteurs/CEvaluateurIQM.mqh"
+#include "../../Include/Moteurs/CRouteurAsynchrone.mqh"
 
 // Objets globaux
 CContexteTrading *g_contexte;
@@ -22,15 +25,15 @@ IExecution       *g_execution;
 int OnInit()
   {
    // Initialisation des Moteurs (Implémentations Concrètes)
-   // g_journalier = new CAgregateurLogs();
-   // g_analyseur = new CEvaluateurIQM();
-   // g_execution = new CRouteurAsynchrone();
+   g_journalier = new CAgregateurLogs();
+   g_analyseur = new CEvaluateurIQM();
+   g_execution = new CRouteurAsynchrone();
    
    // Injection de dépendances dans l'Automate
-   // g_contexte = new CContexteTrading(g_analyseur, g_journalier, g_execution);
+   g_contexte = new CContexteTrading(g_analyseur, g_journalier, g_execution);
    
    // Démarrage de la machine à états sur l'état de Repos
-   // g_contexte.ChangerEtat(new CEtatRepos());
+   g_contexte.ChangerEtat(new CEtatRepos());
    
    Print("L'Artisan Scalper est prêt (Affinage terminé).");
    return(INIT_SUCCEEDED);
@@ -41,10 +44,10 @@ int OnInit()
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
   {
-   // if(g_contexte != NULL) delete g_contexte;
-   // if(g_analyseur != NULL) delete g_analyseur;
-   // if(g_journalier != NULL) delete g_journalier;
-   // if(g_execution != NULL) delete g_execution;
+   if(g_contexte != NULL) delete g_contexte;
+   if(g_analyseur != NULL) delete g_analyseur;
+   if(g_journalier != NULL) delete g_journalier;
+   if(g_execution != NULL) delete g_execution;
    Print("Extinction du four. À la prochaine !");
   }
 
@@ -53,8 +56,8 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-   // if(g_contexte != NULL) {
-   //    g_contexte.TraiterTick();
-   // }
+   if(g_contexte != NULL) {
+      g_contexte.TraiterTick();
+   }
   }
 //+------------------------------------------------------------------+
