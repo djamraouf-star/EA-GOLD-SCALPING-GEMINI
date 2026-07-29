@@ -7,11 +7,11 @@
 
 // --- PARAMÈTRES D'ENTRÉE DU ROBOT ---
 input group "=== 1. PARAMÈTRES GÉNÉRAUX ==="
-input ulong          InpMagicNumber          = 888101;         // [InpMagicNumber] Magic Number unique
-input double         InpLotSize              = 0.01;          // [InpLotSize] Lot Fixe (Si RiskAuto = false)
-input bool           InpUseAutoRisk          = true;       // [InpUseAutoRisk] Calcul Automatique de Lot par Risk %
-input double         InpRiskPercent          = 1;          // [InpRiskPercent] % du Solde risqué par Trade
-input int            InpMaxSlippagePoints    = 20;          // [InpMaxSlippagePoints] Slippage Max toléré (points)
+sinput ulong         InpMagicNumber          = 888101;         // [InpMagicNumber] Magic Number unique
+sinput double        InpLotSize              = 0.01;          // [InpLotSize] Lot Fixe (Si RiskAuto = false)
+sinput bool          InpUseAutoRisk          = true;       // [InpUseAutoRisk] Calcul Automatique de Lot par Risk %
+sinput double        InpRiskPercent          = 1;          // [InpRiskPercent] % du Solde risqué par Trade
+sinput int           InpMaxSlippagePoints    = 20;          // [InpMaxSlippagePoints] Slippage Max toléré (points)
 
 input group "=== 2. INDICE DE QUALITÉ DU MARCHÉ (IQM) ==="
 input double         InpMinMarketScore       = 71.5;        // [InpMinMarketScore] Score IQM Minimum pour Trader (0 - 100)
@@ -36,39 +36,39 @@ input double         InpTrailingStartAtr     = 1.1;       // [InpTrailingStartAt
 input double         InpTrailingStepAtr      = 0.3;        // [InpTrailingStepAtr] Trailing Step (ATR)
 
 input group "=== 5. INDICATEURS ET POIDS STRATÉGIQUES ==="
-input int            InpAtrPeriod            = 14;          // [InpAtrPeriod] Période ATR
+sinput int           InpAtrPeriod            = 14;          // [InpAtrPeriod] Période ATR
 input double         InpMinAtrPoints         = 5;       // [InpMinAtrPoints] Volatilité Minimum (Points)
-input int            InpEmaFastPeriod        = 9;          // [InpEmaFastPeriod] Période EMA Rapide
-input int            InpEmaSlowPeriod        = 21;          // [InpEmaSlowPeriod] Période EMA Lente
-input int            InpRsiPeriod            = 14;          // [InpRsiPeriod] Période RSI
+sinput int           InpEmaFastPeriod        = 9;          // [InpEmaFastPeriod] Période EMA Rapide
+sinput int           InpEmaSlowPeriod        = 21;          // [InpEmaSlowPeriod] Période EMA Lente
+sinput int           InpRsiPeriod            = 14;          // [InpRsiPeriod] Période RSI
 input double         InpRsiBuyThreshold      = 50;    // [InpRsiBuyThreshold] Seuil RSI Achat
 input double         InpRsiSellThreshold     = 50;   // [InpRsiSellThreshold] Seuil RSI Vente
 
 input group "=== FILTRE ADX (FORCE DE TENDANCE) ==="
 input bool           InpEnableAdxFilter      = true;        // [InpEnableAdxFilter] Activer le filtre ADX
-input int            InpAdxPeriod            = 14;          // [InpAdxPeriod] Période de l'ADX
+sinput int           InpAdxPeriod            = 14;          // [InpAdxPeriod] Période de l'ADX
 input double         InpAdxThreshold         = 22;          // [InpAdxThreshold] Seuil minimum de l'ADX (ex: 22)
 
 input group "=== 6. LIMITES D'EXPOSITION JOURNALIÈRE ==="
 input bool           InpEnableDailyLimits    = true;       // [InpEnableDailyLimits] Activer les Limites Journalières
-input double         InpMaxDailyLossAmount   = 150;       // [InpMaxDailyLossAmount] Perte Max Journalière ($)
-input double         InpMaxDailyProfitAmount = 400;     // [InpMaxDailyProfitAmount] Objectif Profit Journalier ($)
-input int            InpMaxDailyTrades       = 20;          // [InpMaxDailyTrades] Nombre Max de Trades / Jour
-input int            InpPauseAfterLosses     = 3; // [InpPauseAfterLosses] Nb Pertes avant Pause
-input int            InpPauseDurationMin     = 30;    // [InpPauseDurationMin] Durée de la Pause (Min)
+sinput double        InpMaxDailyLossAmount   = 150;       // [InpMaxDailyLossAmount] Perte Max Journalière ($)
+sinput double        InpMaxDailyProfitAmount = 400;     // [InpMaxDailyProfitAmount] Objectif Profit Journalier ($)
+sinput int           InpMaxDailyTrades       = 20;          // [InpMaxDailyTrades] Nombre Max de Trades / Jour
+sinput int           InpPauseAfterLosses     = 3; // [InpPauseAfterLosses] Nb Pertes avant Pause
+sinput int           InpPauseDurationMin     = 30;    // [InpPauseDurationMin] Durée de la Pause (Min)
 
 input group "=== 7. FILTRES HORAIRES ET SESSIONS ==="
 input bool           InpEnableSessionFilter  = false;     // [InpEnableSessionFilter] Activer les Filtres de Session
-input string         InpLondonStart          = "08:00";       // [InpLondonStart] Début Session Londres
-input string         InpLondonEnd            = "17:30";         // [InpLondonEnd] Fin Session Londres
-input string         InpNyStart              = "14:30";           // [InpNyStart] Début Session NY
-input string         InpNyEnd                = "21:00";             // [InpNyEnd] Fin Session NY
+sinput string        InpLondonStart          = "08:00";       // [InpLondonStart] Début Session Londres
+sinput string        InpLondonEnd            = "17:30";         // [InpLondonEnd] Fin Session Londres
+sinput string        InpNyStart              = "14:30";           // [InpNyStart] Début Session NY
+sinput string        InpNyEnd                = "21:00";             // [InpNyEnd] Fin Session NY
 input bool           InpFilterAsianSession   = true;      // [InpFilterAsianSession] Interdire Session Asiatique
 
 input group "=== 8. STATISTICAL EDGE ==="
 input bool           InpEnableStatisticalEdge = true;     // [InpEnableStatisticalEdge] Utiliser Stat Edge
 input double         InpStatEdgeMinWinRate    = 55.0;     // [InpStatEdgeMinWinRate] Edge Minimum (%)
-input int            InpStatEdgeLookback      = 10000;    // [InpStatEdgeLookback] Bougies à analyser
+sinput int           InpStatEdgeLookback      = 10000;    // [InpStatEdgeLookback] Bougies à analyser
 
 class CParameters
 {
