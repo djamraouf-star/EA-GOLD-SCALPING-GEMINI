@@ -89,8 +89,8 @@ public:
       
       CopyBuffer(emaFastHandle, 0, 1, params.m_statEdgeLookback, emaFast);
       CopyBuffer(emaSlowHandle, 0, 1, params.m_statEdgeLookback, emaSlow);
-      CopyBuffer(adxHandle, 0, 0, 1, params.m_statEdgeLookback, adx);
-      CopyBuffer(rsiHandle, 0, 0, 1, params.m_statEdgeLookback, rsi);
+      CopyBuffer(adxHandle, 0, 1, params.m_statEdgeLookback, adx);
+      CopyBuffer(rsiHandle, 0, 1, params.m_statEdgeLookback, rsi);
       CopyBuffer(atrFastHandle, 0, 1, params.m_statEdgeLookback, atrFast);
       CopyBuffer(atrSlowHandle, 0, 1, params.m_statEdgeLookback, atrSlow);
 
