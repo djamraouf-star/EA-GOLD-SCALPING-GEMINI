@@ -15,6 +15,7 @@
 #include "../Statistics/DailyManager.mqh"
 #include "../Statistics/Logger.mqh"
 #include "../Utils/TimeUtils.mqh"
+#include "../Market/StatisticalEdge.mqh"
 
 class CEngine
 {
@@ -27,6 +28,7 @@ private:
    CMarketContext       m_context;
    CMarketFilter        m_marketFilter;
    CSignalManager       m_signalManager;
+   CStatisticalEdge     m_statEdge;
    CRiskManager         m_riskManager;
    COrderManager        m_orderManager;
    CPositionManager     m_positionManager;
@@ -44,6 +46,11 @@ public:
       if(!m_params.Init()) {
          m_logger.Log("ERROR", "Engine", "Échec du chargement des paramètres.");
          m_stateManager.TransitionTo(FSM_INITIALISATION, FSM_EVENT_INIT_FAILED, m_logger, "Paramètres invalides");
+         return INIT_FAILED;
+      }
+
+      if(!m_statEdge.Initialize(m_params, Symbol(), Period())) {
+         m_logger.Log("ERROR", "Engine", "Échec init StatEdge.");
          return INIT_FAILED;
       }
 
@@ -99,6 +106,12 @@ public:
       ENUM_SIGNAL_TYPE signal = m_signalManager.CheckSignal(m_context);
       if(signal == SIGNAL_NONE) {
          m_stateManager.TransitionTo(FSM_ATTENTE, FSM_EVENT_NONE, m_logger, "Aucun signal EMA/RSI");
+         return;
+      }
+
+      string statReason = "";
+      if(!m_statEdge.IsAllowed(m_context, m_params, (signal == SIGNAL_BUY ? ORDER_TYPE_BUY : ORDER_TYPE_SELL), statReason)) {
+         m_stateManager.TransitionTo(FSM_ATTENTE, FSM_EVENT_NONE, m_logger, StringFormat("Signal rejeté par Edge Stat: %s", statReason));
          return;
       }
 

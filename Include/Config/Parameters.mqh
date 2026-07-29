@@ -72,6 +72,11 @@ input string         InpNyStart              = "14:30";           // [InpNyStart
 input string         InpNyEnd                = "21:00";             // [InpNyEnd] Fin Session NY
 input bool           InpFilterAsianSession   = true;      // [InpFilterAsianSession] Interdire Session Asiatique
 
+input group "=== 8. STATISTICAL EDGE ==="
+input bool           InpEnableStatisticalEdge = true;     // [InpEnableStatisticalEdge] Utiliser Stat Edge
+input double         InpStatEdgeMinWinRate    = 55.0;     // [InpStatEdgeMinWinRate] Edge Minimum (%)
+input int            InpStatEdgeLookback      = 10000;    // [InpStatEdgeLookback] Bougies à analyser
+
 class CParameters
 {
 public:
@@ -132,6 +137,10 @@ public:
    string   m_nyStart;
    string   m_nyEnd;
    bool     m_filterAsianSession;
+   
+   bool     m_enableStatisticalEdge;
+   double   m_statEdgeMinWinRate;
+   int      m_statEdgeLookback;
 
    bool Init()
    {
@@ -192,6 +201,10 @@ public:
       m_nyStart              = InpNyStart;
       m_nyEnd                = InpNyEnd;
       m_filterAsianSession   = InpFilterAsianSession;
+      
+      m_enableStatisticalEdge = InpEnableStatisticalEdge;
+      m_statEdgeMinWinRate   = InpStatEdgeMinWinRate;
+      m_statEdgeLookback     = MathMax(100, InpStatEdgeLookback);
 
       return true;
    }
