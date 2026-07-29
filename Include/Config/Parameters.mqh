@@ -43,13 +43,6 @@ input int            InpEmaSlowPeriod        = 21;          // [InpEmaSlowPeriod
 input int            InpRsiPeriod            = 14;          // [InpRsiPeriod] Période RSI
 input double         InpRsiBuyThreshold      = 50;    // [InpRsiBuyThreshold] Seuil RSI Achat
 input double         InpRsiSellThreshold     = 50;   // [InpRsiSellThreshold] Seuil RSI Vente
-input double         InpWeightSpread         = 33;       // [InpWeightSpread] Poids du Spread dans l'IQM
-input double         InpWeightAtr            = 22;          // [InpWeightAtr] Poids de la Volatilité (ATR)
-input double         InpWeightTrend          = 11;        // [InpWeightTrend] Poids de la Tendance dans l'IQM
-input double         InpWeightRsi            = 16;          // [InpWeightRsi] Poids du RSI Momentum dans l'IQM
-input double         InpWeightSession        = 11;       // [InpWeightSession] Poids de la Session
-input double         InpWeightCandles        = 2;        // [InpWeightCandles] Poids des Bougies
-input double         InpWeightPullback       = 5;       // [InpWeightPullback] Poids du Pullback
 
 input group "=== FILTRE ADX (FORCE DE TENDANCE) ==="
 input bool           InpEnableAdxFilter      = true;        // [InpEnableAdxFilter] Activer le filtre ADX
@@ -112,13 +105,6 @@ public:
    int      m_rsiPeriod;
    double   m_rsiBuyThreshold;
    double   m_rsiSellThreshold;
-   double   m_weightSpread;
-   double   m_weightAtr;
-   double   m_weightTrend;
-   double   m_weightRsi;
-   double   m_weightSession;
-   double   m_weightCandles;
-   double   m_weightPullback;
 
    bool     m_enableAdxFilter;
    int      m_adxPeriod;
@@ -176,13 +162,6 @@ public:
       m_rsiPeriod            = InpRsiPeriod;
       m_rsiBuyThreshold      = InpRsiBuyThreshold;
       m_rsiSellThreshold     = InpRsiSellThreshold;
-      m_weightSpread         = MathMax(0.0, InpWeightSpread);
-      m_weightAtr            = MathMax(0.0, InpWeightAtr);
-      m_weightTrend          = MathMax(0.0, InpWeightTrend);
-      m_weightRsi            = MathMax(0.0, InpWeightRsi);
-      m_weightSession        = MathMax(0.0, InpWeightSession);
-      m_weightCandles        = MathMax(0.0, InpWeightCandles);
-      m_weightPullback       = MathMax(0.0, InpWeightPullback);
 
       m_enableAdxFilter      = InpEnableAdxFilter;
       m_adxPeriod            = MathMax(1, InpAdxPeriod);

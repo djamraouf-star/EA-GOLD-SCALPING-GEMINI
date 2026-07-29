@@ -43,13 +43,13 @@ public:
       
       // 2. Application des Pondérations Centralisées
       SIQMWeights weights;
-      weights.spread   = params.m_weightSpread;
-      weights.atr      = params.m_weightAtr;
-      weights.trend    = params.m_weightTrend;
-      weights.rsi      = params.m_weightRsi;
-      weights.session  = params.m_weightSession;
-      weights.candles  = params.m_weightCandles;
-      weights.pullback = params.m_weightPullback;
+      weights.spread   = 33.0;
+      weights.atr      = 22.0;
+      weights.trend    = 11.0;
+      weights.rsi      = 16.0;
+      weights.session  = 11.0;
+      weights.candles  = 2.0;
+      weights.pullback = 5.0;
       
       double totalWeight = weights.total();
       
