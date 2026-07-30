@@ -42,7 +42,7 @@ void CEtatRepos::Entrer(CContexteTrading *contexte) {
 void CEtatRepos::Sortir(CContexteTrading *contexte) {}
 void CEtatRepos::OnTick(CContexteTrading *contexte) {
    // Pour la démo, on lance une analyse toutes les 4 heures
-   if(TimeCurrent() - m_last_check > 14400) { 
+   if(TimeCurrent() - m_last_check > 300) { 
       contexte.ChangerEtat(new CEtatAnalyse());
    }
 }
